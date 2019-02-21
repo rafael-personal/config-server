@@ -6,5 +6,10 @@ pipeline {
         sh './mvnw install -DskipTests'
       }
     }
+    stage('deploy') {
+      steps {
+        sh './deploy.sh dev'
+      }
+    }
   }
 }
