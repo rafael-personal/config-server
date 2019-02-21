@@ -2,10 +2,10 @@
 ############################################################################
 #title           :deploy.sh
 #description     :Este script es para hacer build y desplegar en docker (develop) .
-#author		 : Rafael Fernandez
+#author		     : Rafael Fernandez
 #date            :20190220
 #version         :0.1
-#usage		 :sh deploy.sh
+#usage		     :sh deploy.sh
 #notes           :Install docker y java, java y maven para usar este script.
 #                :las variables en el file setvar son de desarrollo
 #==============================================================================
@@ -21,9 +21,6 @@ fi
 #SET ENV VARS
 export $(grep -v '^#' setvar-$PROFILE | xargs)
 
-# BUILD CODE 
-./mvnw clean
-./mvnw install -DskipTests
 
 #BUILD IMAGE
 docker build --tag $DOCKER_IMAGE .
