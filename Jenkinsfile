@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build Maven') {
       steps {
-        sh './buil.sh'
+        sh './build.sh'
       }
     }
     stage('deploy') {
