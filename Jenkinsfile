@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build Maven') {
       steps {
-        sh './mvnw install -DskipTests'
+        sh './buil.sh'
       }
     }
     stage('deploy') {
