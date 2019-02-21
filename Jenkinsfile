@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage('Build Maven') {
       steps {
-        sh 'mvnw install -DskypTests'
+        sh './mvnw install -DskypTests'
       }
     }
   }
