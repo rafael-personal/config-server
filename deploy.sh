@@ -11,8 +11,11 @@
 #==============================================================================
 
 #READ PROFILE TO DEPLOY
+if [ -z "$PROFILE" ]
+then
 echo "PROFILE:"
 read PROFILE
+fi
 
 
 #SET ENV VARS
@@ -52,3 +55,6 @@ echo "[INFO] CONSUL CLINT DISCOVERY (INFO)"
 echo "[INFO] ------------------------------------------------------------------------"
 echo "[INFO]	CONSUL HOST: $CONSUL_SERVER"
 echo "[INFO]	CONSUL PORT: $CONSUL_PORT"
+
+unset $PROFILE
+unset $(grep -v '^#' setvar-dev | cut -d'=' -f1 | xargs)
