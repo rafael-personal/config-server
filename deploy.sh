@@ -9,7 +9,7 @@
 #notes           :Install docker y java, java y maven para usar este script.
 #                :las variables en el file setvar son de desarrollo
 #==============================================================================
-
+PROFILE=$1
 #READ PROFILE TO DEPLOY
 if [ -z "$PROFILE" ]
 then
@@ -26,7 +26,7 @@ export $(grep -v '^#' setvar-$PROFILE | xargs)
 ./mvnw install -DskipTests
 
 #BUILD IMAGE
-docker build -t $DOCKER_IMAGE .
+docker build --tag $DOCKER_IMAGE .
 
 # RUN CONTAINER IN DOCKER
 CID=$(docker run -d --network=$NETWORK --env-file setvar-dev $DOCKER_IMAGE)
