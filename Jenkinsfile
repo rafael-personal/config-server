@@ -11,10 +11,5 @@ pipeline {
         sh './deploy.sh dev'
       }
     }
-    stage('end') {
-      steps {
-        mail(subject: 'Build Complete', body: 'Success Build', bcc: 'rafael.fernandez.ve@gmail.com', from: 'rafael.fernandez.ve@gmail.com', to: 'rafael.fernandez.ve@gmail.com')
-      }
-    }
   }
 }
