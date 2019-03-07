@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Map;
 
 
 @EnableConfigServer
@@ -40,10 +41,9 @@ public class Application {
                 env.getProperty("server.port"),
                 env.getActiveProfiles());
 
-        String configServerStatus = env.getProperty("configserver.status");
-        LOG.info("\n----------------------------------------------------------\n\t"
-                        + "Config Server: \t{}\n----------------------------------------------------------",
-                configServerStatus == null ? "Not found or not setup for this application" : configServerStatus);
+        Map<String,String> vars = System.getenv();
+        LOG.info("\n----------------------------------------------------------\n\t");
+                   
 	}
 
 }

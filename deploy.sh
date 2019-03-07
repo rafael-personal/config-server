@@ -9,24 +9,12 @@
 #notes           :Install docker y java, java y maven para usar este script.
 #                :las variables en el file setvar son de desarrollo
 #==============================================================================
-PROFILE=$1
-#READ PROFILE TO DEPLOY
-if [ -z "$PROFILE" ]
-then
-echo "PROFILE:"
-read PROFILE
-fi
-
-
-#SET ENV VARS
-export $(grep -v '^#' setvar-$PROFILE | xargs)
-
 
 #BUILD IMAGE
 docker build --tag $DOCKER_IMAGE .
 
 # RUN CONTAINER IN DOCKER
-CID=$(docker run -d --network=$NETWORK --env-file setvar-dev $DOCKER_IMAGE)
+CID=$(docker run -d --network=$NETWORK --env-file environment-dev $DOCKER_IMAGE)
 IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $CID)
 GATEWAY=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.Gateway}}{{end}}' $CID)
 
@@ -53,5 +41,3 @@ echo "[INFO] -------------------------------------------------------------------
 echo "[INFO]	CONSUL HOST: $CONSUL_SERVER"
 echo "[INFO]	CONSUL PORT: $CONSUL_PORT"
 
-unset $PROFILE
-unset $(grep -v '^#' setvar-dev | cut -d'=' -f1 | xargs)

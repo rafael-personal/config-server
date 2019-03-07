@@ -6,4 +6,4 @@ WORKDIR /var/www/app
 COPY entrypoint.sh entrypoint.sh
 COPY target/config-server*.jar app.jar
 
-CMD /var/www/app/entrypoint.sh
+CMD /var/www/app/entrypoint.sh app.jar
